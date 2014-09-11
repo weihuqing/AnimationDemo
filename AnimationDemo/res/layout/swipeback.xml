@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    class="cjh.smile.animation.view.CustomLinearLayout"
+    android:background="#f5f5f5"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/view2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#48621E"
+        android:contentDescription="@string/app_name"
+        android:gravity="center"
+        android:text="向右滑动试试"
+        android:textColor="#ffffff" />
+
+</view>
