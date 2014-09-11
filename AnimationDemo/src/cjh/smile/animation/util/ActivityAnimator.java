@@ -4,162 +4,181 @@ import android.app.Activity;
 import cjh.smile.animation.R;
 
 /**
- * ¶¯»­Ğ§¹ûÀà
+ * åŠ¨ç”»æ•ˆæœç±»
  * 
  * @author Administrator
  * 
  */
-public class ActivityAnimator {
-	/**
-	 * Ë®Æ½ÉìËõĞ§¹û
-	 * 
-	 * @param a
-	 */
-	public void flipHorizontalAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.flip_horizontal_in,
-				R.anim.flip_horizontal_out);
-	}
-
-	public void flipHorizontalBackAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.flip_horizontal_in,
-				R.anim.flip_horizontal_out);
-	}
-
-	/**
-	 * ´¹Ö±ÉìËõ
-	 * 
-	 * @param a
-	 */
-	public void flipVerticalAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.flip_vertical_in,
-				R.anim.flip_vertical_out);
-	}
-
-	public void flipVerticalBackAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.flip_vertical_in,
-				R.anim.flip_vertical_out);
-	}
-
-	/**
-	 * ½¥±ä¶¯»­
-	 * 
-	 * @param a
-	 */
-	public void fadeAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-	}
-
-	public void fadeBackAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-	}
-
-	/**
-	 * ×óÉÏ½ÇÍË³ö¶¯»­
-	 * 
-	 * @param a
-	 */
-	public void disappearTopLeftAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.disappear_top_left_in,
-				R.anim.disappear_top_left_out);
-	}
-
-	public void disappearTopLeftBackAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.appear_top_left_in,
-				R.anim.appear_top_left_out);
-	}
-
-	/**
-	 * ÓÒÏÂ½Ç½øÈë¶¯»­
-	 * 
-	 * @param a
-	 */
-	public void appearBottomRightAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.appear_bottom_right_in,
-				R.anim.appear_bottom_right_out);
-	}
-
-	/**
-	 * ÓÒÏÂ½ÇÍË³ö¶¯»­
-	 * 
-	 * @param a
-	 */
-	public void appearBottomRightBackAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.disappear_bottom_right_in,
-				R.anim.disappear_bottom_right_out);
-	}
-
-	/**
-	 * Ëõ·Å¶¯»­½øÈë
-	 * 
-	 * @param a
-	 */
-	public void unzoomAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.unzoom_in, R.anim.unzoom_out);
-	}
-
-	/**
-	 * Ëõ·Å¶¯»­ÍË³ö
-	 * 
-	 * @param a
-	 */
-	public void unzoomBackAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.unzoom_in, R.anim.unzoom_out);
-	}
-
-	/**
-	 * ²ãµşĞ§¹û-½øÈë
-	 * 
-	 * @param a
-	 */
-	public void stackAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.open_next, R.anim.close_main);
-	}
-
-	/**
-	 * ²ãµşĞ§¹û-ÍË³ö
-	 * 
-	 * @param a
-	 */
-	public void stackBackAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.open_main, R.anim.close_next);
-	}
-
-	/**
-	 * Ë®Æ½Æ½ÒÆĞ§¹û-ÓÒ½ø×óÍË
-	 * 
-	 * @param a
-	 */
-	public void slideLeftRightAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
-	}
-
-	/**
-	 * Ë®Æ½Æ½ÒÆĞ§¹û-×ó½øÓÒ³ö
-	 * 
-	 * @param a
-	 */
-	public void slideLeftRightBackAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.push_left_in, R.anim.push_right_out);
-	}
-
-	/**
-	 * ´¹Ö±Æ½ÒÆĞ§¹û1-
-	 * 
-	 * @param a
-	 */
-	public void slideTopBottomAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.slide_top_in,
-				R.anim.slide_bottom_out);
-	}
-
-	/**
-	 * ´¹Ö±Æ½ÒÆĞ§¹û1-
-	 * 
-	 * @param a
-	 */
-	public void slideTopBottomBackAnimation(Activity a) {
-		a.overridePendingTransition(R.anim.slide_bottom_in,
-				R.anim.slide_top_out);
-	}
-
+public class ActivityAnimator
+{
+    /**
+     * æ°´å¹³ä¼¸ç¼©æ•ˆæœ
+     * 
+     * @param a
+     */
+    public void flipHorizontalAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.flip_horizontal_in,
+            R.anim.flip_horizontal_out);
+    }
+    
+    public void flipHorizontalBackAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.flip_horizontal_in,
+            R.anim.flip_horizontal_out);
+    }
+    
+    /**
+     * å‚ç›´ä¼¸ç¼©
+     * 
+     * @param a
+     */
+    public void flipVerticalAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.flip_vertical_in,
+            R.anim.flip_vertical_out);
+    }
+    
+    public void flipVerticalBackAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.flip_vertical_in,
+            R.anim.flip_vertical_out);
+    }
+    
+    /**
+     * æ¸å˜åŠ¨ç”»
+     * 
+     * @param a
+     */
+    public void fadeAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+    
+    public void fadeBackAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
+    
+    /**
+     * å·¦ä¸Šè§’é€€å‡ºåŠ¨ç”»
+     * 
+     * @param a
+     */
+    public void disappearTopLeftAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.disappear_top_left_in,
+            R.anim.disappear_top_left_out);
+    }
+    
+    public void disappearTopLeftBackAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.appear_top_left_in,
+            R.anim.appear_top_left_out);
+    }
+    
+    /**
+     * å³ä¸‹è§’è¿›å…¥åŠ¨ç”»
+     * 
+     * @param a
+     */
+    public void appearBottomRightAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.appear_bottom_right_in,
+            R.anim.appear_bottom_right_out);
+    }
+    
+    /**
+     * å³ä¸‹è§’é€€å‡ºåŠ¨ç”»
+     * 
+     * @param a
+     */
+    public void appearBottomRightBackAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.disappear_bottom_right_in,
+            R.anim.disappear_bottom_right_out);
+    }
+    
+    /**
+     * ç¼©æ”¾åŠ¨ç”»è¿›å…¥
+     * 
+     * @param a
+     */
+    public void unzoomAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.unzoom_in, R.anim.unzoom_out);
+    }
+    
+    /**
+     * ç¼©æ”¾åŠ¨ç”»é€€å‡º
+     * 
+     * @param a
+     */
+    public void unzoomBackAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.unzoom_in, R.anim.unzoom_out);
+    }
+    
+    /**
+     * å±‚å æ•ˆæœ-è¿›å…¥
+     * 
+     * @param a
+     */
+    public void stackAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.open_next, R.anim.close_main);
+    }
+    
+    /**
+     * å±‚å æ•ˆæœ-é€€å‡º
+     * 
+     * @param a
+     */
+    public void stackBackAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.open_main, R.anim.close_next);
+    }
+    
+    /**
+     * æ°´å¹³å¹³ç§»æ•ˆæœ-å³è¿›å·¦é€€
+     * 
+     * @param a
+     */
+    public void slideLeftRightAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
+    }
+    
+    /**
+     * æ°´å¹³å¹³ç§»æ•ˆæœ-å·¦è¿›å³å‡º
+     * 
+     * @param a
+     */
+    public void slideLeftRightBackAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.push_left_in, R.anim.push_right_out);
+    }
+    
+    /**
+     * å‚ç›´å¹³ç§»æ•ˆæœ1-
+     * 
+     * @param a
+     */
+    public void slideTopBottomAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.slide_top_in,
+            R.anim.slide_bottom_out);
+    }
+    
+    /**
+     * å‚ç›´å¹³ç§»æ•ˆæœ1-
+     * 
+     * @param a
+     */
+    public void slideTopBottomBackAnimation(Activity a)
+    {
+        a.overridePendingTransition(R.anim.slide_bottom_in,
+            R.anim.slide_top_out);
+    }
+    
 }

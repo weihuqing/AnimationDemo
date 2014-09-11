@@ -6,33 +6,38 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
-/**ÖØĞ´µÄÏßĞÔ²¼¾Ö Ö§³ÖÏòÓÒ»¬¶¯Ê±ºò finishµôactivity
+/**é‡å†™çš„çº¿æ€§å¸ƒå±€ æ”¯æŒå‘å³æ»‘åŠ¨æ—¶å€™ finishæ‰activity
  * @author admin
  *
  */
-public class CustomLinearLayout extends LinearLayout {
-
-	 private GestureDetector gestureDetector;
-	 
-	public CustomLinearLayout(Context context) {
-		super(context);
-		// TODO Auto-generated constructor stub
-	}
-	
-    public CustomLinearLayout(Context context, AttributeSet attrs) {
+public class CustomLinearLayout extends LinearLayout
+{
+    
+    private GestureDetector gestureDetector;
+    
+    public CustomLinearLayout(Context context)
+    {
+        super(context);
+        // TODO Auto-generated constructor stub
+    }
+    
+    public CustomLinearLayout(Context context, AttributeSet attrs)
+    {
         super(context, attrs);
     }
     
-    public void setGestureDetector(GestureDetector gestureDetector) {
+    public void setGestureDetector(GestureDetector gestureDetector)
+    {
         this.gestureDetector = gestureDetector;
     }
-
+    
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
+    public boolean dispatchTouchEvent(MotionEvent ev)
+    {
         if (this.gestureDetector != null)
             this.gestureDetector.onTouchEvent(ev);
         return super.dispatchTouchEvent(ev);
-
+        
     }
-
+    
 }

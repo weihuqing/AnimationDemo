@@ -9,46 +9,50 @@ import cjh.smile.animation.util.AnimationFactory;
 import cjh.smile.animation.util.AnimationFactory.FlipDirection;
 
 /**
- * Á½Ò³·­×ªĞ§¹û--·Â°Ù¶Èµã»÷ÎÒµÄÓ¦ÓÃºó³öÏÖµÄĞ§¹û
+ * ä¸¤é¡µç¿»è½¬æ•ˆæœ--ä»¿ç™¾åº¦ç‚¹å‡»æˆ‘çš„åº”ç”¨åå‡ºç°çš„æ•ˆæœ
  * 
  * @author Administrator
  * 
  */
-public class FlipActivity extends Activity implements OnClickListener {
-	
-	ViewAnimator viewAnimator;
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.flip);
-		viewAnimator = (ViewAnimator) this.findViewById(R.id.viewFlipper);
-
-		viewAnimator.setOnClickListener(this);
-
-		this.findViewById(R.id.view1).setOnClickListener(this);
-
-		this.findViewById(R.id.view2).setOnClickListener(this);
-	}
-
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.viewFlipper:
-			AnimationFactory.flipTransition(viewAnimator,
-					FlipDirection.LEFT_RIGHT);
-			break;
-
-		case R.id.view1:
-			AnimationFactory.flipTransition(viewAnimator,
-					FlipDirection.LEFT_RIGHT);
-
-			break;
-		case R.id.view2:
-			AnimationFactory.flipTransition(viewAnimator,
-					FlipDirection.RIGHT_LEFT);
-			break;
-		}
-	}
+public class FlipActivity extends Activity implements OnClickListener
+{
+    
+    ViewAnimator viewAnimator;
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.flip);
+        viewAnimator = (ViewAnimator) this.findViewById(R.id.viewFlipper);
+        
+        viewAnimator.setOnClickListener(this);
+        
+        this.findViewById(R.id.view1).setOnClickListener(this);
+        
+        this.findViewById(R.id.view2).setOnClickListener(this);
+    }
+    
+    @Override
+    public void onClick(View v)
+    {
+        // TODO Auto-generated method stub
+        switch (v.getId())
+        {
+            case R.id.viewFlipper:
+                AnimationFactory.flipTransition(viewAnimator,
+                    FlipDirection.LEFT_RIGHT);
+                break;
+            
+            case R.id.view1:
+                AnimationFactory.flipTransition(viewAnimator,
+                    FlipDirection.LEFT_RIGHT);
+                
+                break;
+            case R.id.view2:
+                AnimationFactory.flipTransition(viewAnimator,
+                    FlipDirection.RIGHT_LEFT);
+                break;
+        }
+    }
 }

@@ -24,18 +24,24 @@ import android.widget.ImageView;
 
 /**
  * 
- * ÓÃ´úÂëÊµÏÖÀàËÆÎ¢ÐÅ¿ªÃÅÐ§¹û
+ * ç”¨ä»£ç å®žçŽ°ç±»ä¼¼å¾®ä¿¡å¼€é—¨æ•ˆæžœ
  */
 @SuppressLint("NewApi")
-public class ActivitySplitAnimationUtil {
-
+public class ActivitySplitAnimationUtil
+{
+    
     public static Bitmap mBitmap = null;
+    
     private static int[] mLoc1;
+    
     private static int[] mLoc2;
+    
     private static ImageView mTopImage;
+    
     private static ImageView mBottomImage;
+    
     private static AnimatorSet mSetAnim;
-
+    
     /**
      * Start a new Activity with a Split animation
      *
@@ -43,35 +49,39 @@ public class ActivitySplitAnimationUtil {
      * @param intent       The Intent needed tot start the new Activity
      * @param splitYCoord  The Y coordinate where we want to split the Activity on the animation. -1 will split the Activity equally
      */
-    public static void startActivity(Activity currActivity, Intent intent, int splitYCoord) {
-
+    public static void startActivity(Activity currActivity, Intent intent,
+        int splitYCoord)
+    {
+        
         // Preparing the bitmaps that we need to show
         prepare(currActivity, splitYCoord);
         currActivity.startActivity(intent);
         currActivity.overridePendingTransition(0, 0);
     }
-
+    
     /**
      * Start a new Activity with a Split animation right in the middle of the Activity
      *
      * @param currActivity The current Activity
      * @param intent       The Intent needed tot start the new Activity
      */
-    public static void startActivity(Activity currActivity, Intent intent) {
+    public static void startActivity(Activity currActivity, Intent intent)
+    {
         startActivity(currActivity, intent, -1);
     }
-
+    
     /**
      * Preparing the graphics on the destination Activity.
      * Should be called on the destination activity on Activity#onCreate() BEFORE setContentView()
      *
      * @param destActivity the destination Activity
      */
-    public static void prepareAnimation(final Activity destActivity) {
-		mTopImage = createImageView(destActivity, mBitmap, mLoc1);
-		mBottomImage = createImageView(destActivity, mBitmap, mLoc2);
+    public static void prepareAnimation(final Activity destActivity)
+    {
+        mTopImage = createImageView(destActivity, mBitmap, mLoc1);
+        mBottomImage = createImageView(destActivity, mBitmap, mLoc2);
     }
-
+    
     /**
      * Start the animation the reveals the destination Activity
      * Should be called on the destination activity on Activity#onCreate() AFTER setContentView()
@@ -80,53 +90,69 @@ public class ActivitySplitAnimationUtil {
      * @param duration The duration of the animation
      * @param interpolator The interpulator to use for the animation. null for no interpulation.
      */
-    public static void animate(final Activity destActivity, final int duration, final TimeInterpolator interpolator) {
-
+    public static void animate(final Activity destActivity, final int duration,
+        final TimeInterpolator interpolator)
+    {
+        
         // Post this on the UI thread's message queue. It's needed for the items to be already measured
-        new Handler().post(new Runnable() {
-
+        new Handler().post(new Runnable()
+        {
+            
             @Override
-            public void run() {
+            public void run()
+            {
                 mSetAnim = new AnimatorSet();
                 mTopImage.setLayerType(View.LAYER_TYPE_HARDWARE, null);
                 mBottomImage.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-                mSetAnim.addListener(new Animator.AnimatorListener() {
+                mSetAnim.addListener(new Animator.AnimatorListener()
+                {
                     @Override
-                    public void onAnimationStart(Animator animation) {
+                    public void onAnimationStart(Animator animation)
+                    {
                     }
-
+                    
                     @Override
-                    public void onAnimationEnd(Animator animation) {
+                    public void onAnimationEnd(Animator animation)
+                    {
                         clean(destActivity);
                     }
-
+                    
                     @Override
-                    public void onAnimationCancel(Animator animation) {
+                    public void onAnimationCancel(Animator animation)
+                    {
                         clean(destActivity);
                     }
-
+                    
                     @Override
-                    public void onAnimationRepeat(Animator animation) {
-
+                    public void onAnimationRepeat(Animator animation)
+                    {
+                        
                     }
                 });
-
+                
                 // Animating the 2 parts away from each other
-                Animator anim1 = ObjectAnimator.ofFloat(mTopImage, "translationY", mTopImage.getHeight() * -1);
-                Animator anim2 = ObjectAnimator.ofFloat(mBottomImage, "translationY", mBottomImage.getHeight());
-
-                if (interpolator != null) {
+                Animator anim1 =
+                    ObjectAnimator.ofFloat(mTopImage,
+                        "translationY",
+                        mTopImage.getHeight() * -1);
+                Animator anim2 =
+                    ObjectAnimator.ofFloat(mBottomImage,
+                        "translationY",
+                        mBottomImage.getHeight());
+                
+                if (interpolator != null)
+                {
                     anim1.setInterpolator(interpolator);
                     anim2.setInterpolator(interpolator);
                 }
-
+                
                 mSetAnim.setDuration(duration);
                 mSetAnim.playTogether(anim1, anim2);
                 mSetAnim.start();
             }
         });
     }
-
+    
     /**
      * Start the animation that reveals the destination Activity
      * Should be called on the destination activity on Activity#onCreate() AFTER setContentView()
@@ -134,67 +160,85 @@ public class ActivitySplitAnimationUtil {
      * @param destActivity the destination Activity
      * @param duration The duration of the animation
      */
-    public static void animate(final Activity destActivity, final int duration) {
+    public static void animate(final Activity destActivity, final int duration)
+    {
         animate(destActivity, duration, new DecelerateInterpolator());
     }
-
+    
     /**
      * Cancel an in progress animation
      */
-    public static void cancel() {
+    public static void cancel()
+    {
         if (mSetAnim != null)
             mSetAnim.cancel();
     }
-
+    
     /**
      * Clean stuff
      *
      * @param activity The Activity where the animation is occurring
      */
-    private static void clean(Activity activity) {
-        if (mTopImage != null) {
+    private static void clean(Activity activity)
+    {
+        if (mTopImage != null)
+        {
             mTopImage.setLayerType(View.LAYER_TYPE_NONE, null);
-            try {
+            try
+            {
                 // If we use the regular removeView() we'll get a small UI glitch
                 activity.getWindowManager().removeViewImmediate(mBottomImage);
-            } catch (Exception ignored) {
+            }
+            catch (Exception ignored)
+            {
             }
         }
-        if (mBottomImage != null) {
+        if (mBottomImage != null)
+        {
             mBottomImage.setLayerType(View.LAYER_TYPE_NONE, null);
-            try {
+            try
+            {
                 activity.getWindowManager().removeViewImmediate(mTopImage);
-            } catch (Exception ignored) {
+            }
+            catch (Exception ignored)
+            {
             }
         }
-
+        
         mBitmap = null;
     }
-
+    
     /**
      * Preparing the graphics for the animation
      *
      * @param currActivity the current Activity from where we start the new one
      * @param splitYCoord  The Y coordinate where we want to split the activity. -1 will split the activity equally
      */
-    private static void prepare(Activity currActivity, int splitYCoord) {
-
+    private static void prepare(Activity currActivity, int splitYCoord)
+    {
+        
         // Get the content of the activity and put in a bitmap
-        View root = currActivity.getWindow().getDecorView().findViewById(android.R.id.content);
+        View root =
+            currActivity.getWindow()
+                .getDecorView()
+                .findViewById(android.R.id.content);
         root.setDrawingCacheEnabled(true);
         mBitmap = root.getDrawingCache();
-
+        
         // If the split Y coordinate is -1 - We'll split the activity equally
-        splitYCoord = (splitYCoord != -1 ? splitYCoord : mBitmap.getHeight() / 2);
-
+        splitYCoord =
+            (splitYCoord != -1 ? splitYCoord : mBitmap.getHeight() / 2);
+        
         if (splitYCoord > mBitmap.getHeight())
-            throw new IllegalArgumentException("Split Y coordinate [" + splitYCoord + "] exceeds the activity's height [" + mBitmap.getHeight() + "]");
-
+            throw new IllegalArgumentException("Split Y coordinate ["
+                + splitYCoord + "] exceeds the activity's height ["
+                + mBitmap.getHeight() + "]");
+        
         // Set the location to put the 2 bitmaps on the destination activity
-        mLoc1 = new int[]{0, splitYCoord, root.getTop()};
-        mLoc2 = new int[]{splitYCoord, mBitmap.getHeight(), root.getTop()};
+        mLoc1 = new int[] {0, splitYCoord, root.getTop()};
+        mLoc2 = new int[] {splitYCoord, mBitmap.getHeight(), root.getTop()};
     }
-
+    
     /**
      * Creating the an image, containing one part of the animation on the destination activity
      *
@@ -203,11 +247,14 @@ public class ActivitySplitAnimationUtil {
      * @param loc          The location this part should be on the screen
      * @return
      */
-    private static ImageView createImageView(Activity destActivity, Bitmap bmp, int loc[]) {
-    	MyImageView imageView = new MyImageView(destActivity);
+    private static ImageView createImageView(Activity destActivity, Bitmap bmp,
+        int loc[])
+    {
+        MyImageView imageView = new MyImageView(destActivity);
         imageView.setImageBitmap(bmp);
-        imageView.setImageOffsets(bmp.getWidth(), loc[0], loc[1]);                     
-        WindowManager.LayoutParams windowParams = new WindowManager.LayoutParams();
+        imageView.setImageOffsets(bmp.getWidth(), loc[0], loc[1]);
+        WindowManager.LayoutParams windowParams =
+            new WindowManager.LayoutParams();
         windowParams.gravity = Gravity.TOP;
         windowParams.x = 0;
         windowParams.y = loc[2] + loc[0];
@@ -226,48 +273,50 @@ public class ActivitySplitAnimationUtil {
      */
     private static class MyImageView extends ImageView
     {
-    	private Rect mSrcRect;
-    	private Rect mDstRect;
-    	private Paint mPaint;    	
-    	
-		public MyImageView(Context context) 
-		{
-			super(context);
-			mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		}
-		
-		/**
-	     * Setting the bitmap offests to control the visible area
-	     *
-	     * @param width		   The bitmap image
-	     * @param bmp          The start Y position
-	     * @param loc          The end Y position
-	     * @return
-	     */
-		public void setImageOffsets(int width, int startY, int endY)
-		{
-			mSrcRect = new Rect(0, startY, width, endY);
-			mDstRect = new Rect(0, 0, width, endY - startY);
-		}
-				
-		@Override
-		protected void onDraw(Canvas canvas)
-		{
-			Bitmap bm = null;
-			Drawable drawable = getDrawable();
-			if (null != drawable && drawable instanceof BitmapDrawable)
-			{
-				bm = ((BitmapDrawable)drawable).getBitmap();
-			}
-			
-			if (null == bm)
-			{
-				super.onDraw(canvas);
-			}
-			else
-			{
-				canvas.drawBitmap(bm, mSrcRect, mDstRect, mPaint);
-			}
-		}    	
+        private Rect mSrcRect;
+        
+        private Rect mDstRect;
+        
+        private Paint mPaint;
+        
+        public MyImageView(Context context)
+        {
+            super(context);
+            mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        }
+        
+        /**
+         * Setting the bitmap offests to control the visible area
+         *
+         * @param width		   The bitmap image
+         * @param bmp          The start Y position
+         * @param loc          The end Y position
+         * @return
+         */
+        public void setImageOffsets(int width, int startY, int endY)
+        {
+            mSrcRect = new Rect(0, startY, width, endY);
+            mDstRect = new Rect(0, 0, width, endY - startY);
+        }
+        
+        @Override
+        protected void onDraw(Canvas canvas)
+        {
+            Bitmap bm = null;
+            Drawable drawable = getDrawable();
+            if (null != drawable && drawable instanceof BitmapDrawable)
+            {
+                bm = ((BitmapDrawable) drawable).getBitmap();
+            }
+            
+            if (null == bm)
+            {
+                super.onDraw(canvas);
+            }
+            else
+            {
+                canvas.drawBitmap(bm, mSrcRect, mDstRect, mPaint);
+            }
+        }
     }
 }
